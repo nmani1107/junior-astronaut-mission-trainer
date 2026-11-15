@@ -373,9 +373,6 @@ section.block{margin:22px 0}
 #science-subtitle{font-family:"Baloo 2";font-weight:800;font-size:20px;color:var(--ink);margin:0 0 10px}
 #science-text{font-size:16.5px;line-height:1.55}
 #science-status{font-size:14.5px;font-weight:800;color:var(--muted);min-height:20px;margin:10px 0 0;text-align:center}
-.science-steps-title{font-family:"Baloo 2";font-weight:800;font-size:19px;color:var(--ink);text-align:left;margin:16px 0 8px}
-#science-steps{margin-bottom:12px}
-#science-steps li{font-size:16px;min-height:50px;padding:11px 14px 11px 58px}
 /* Dashboard: badges, Live from NASA, facts, sources & credits live in
    their own view now, so home stays clean (profile, level, missions) */
 .dashboard-open-btn{width:100%}
@@ -383,21 +380,11 @@ section.block{margin:22px 0}
 .dashboard-head{background:var(--panel);border:3px solid var(--line);border-radius:24px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;text-align:center}
 .dashboard-head h2{font-size:clamp(24px,4.4vw,32px);font-weight:800;margin:0 0 6px}
 .dashboard-head p{margin:0 auto 14px;max-width:580px;color:var(--muted);font-weight:700;font-size:16.5px}
-/* "🔬 The Science Behind This" buttons on the Choose Your Level and
-   Choose Your Training Mission sections — same pop-up, new content */
+/* "🔬 The Science Behind This" button on Choose Your Level (level-only
+   pop-up). On Choose Your Training Mission each mission card carries
+   its OWN such button (.mission-card-science), opening the pop-up with
+   only that one mission's science — no instructions, no Goal. */
 .section-science-btn{width:100%;margin-top:12px}
-#missions .section-science-btn{margin:0 0 14px}
-/* Missions overview inside the science pop-up: one block per mission,
-   each with its science intro, its step-by-step list and its goal */
-.science-mission{text-align:left;margin-bottom:22px}
-.science-mission:last-child{margin-bottom:6px}
-.science-mission h3{font-family:"Baloo 2";font-weight:800;font-size:21px;color:var(--ink);margin:0 0 8px}
-.science-mission .sm-fact{background:var(--panel2);border:2px solid var(--line);border-radius:14px;padding:11px 13px;font-size:15.5px;line-height:1.5}
-.science-mission .sm-fact b{color:var(--teal)}
-.science-mission .sm-steps-title{font-family:"Baloo 2";font-weight:800;font-size:17px;color:var(--ink);margin:12px 0 8px}
-.science-mission .sm-steps{margin-bottom:10px}
-.science-mission .sm-steps li{font-size:15.5px;min-height:48px;padding:10px 13px 10px 56px}
-.science-mission .sm-goal{background:var(--panel2);border:2px dashed var(--teal);border-radius:12px;padding:9px 12px;font-weight:900;font-size:15px;text-align:center;margin:0}
 .listen-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px}
 .btn-listen{background:var(--teal);color:#fff;box-shadow:0 5px 0 #0B7472;font-size:23px;padding:16px 30px;min-height:64px}
 .btn-listen:active{transform:translateY(3px);box-shadow:0 2px 0 #0B7472}
@@ -803,7 +790,6 @@ footer a{color:var(--sky);font-weight:900}
       <button class="btn btn-ghost btn-med" data-back type="button">🏠 Go Home</button>
     </div>
     <section class="block" id="missions" style="margin-top:0">
-      <button class="btn btn-teal btn-big section-science-btn" id="missions-science-btn" type="button">🔬 The Science Behind This</button>
       <div class="missions">
         <article class="mission m-coral">
           <span class="m-icon" aria-hidden="true">🧑‍🚀</span>
@@ -812,6 +798,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-spacewalk">🎯 Goal: 6 tools · 3 hearts · 60s</span>
           <span class="chip chip-todo" id="chip-spacewalk">Not done yet today</span>
           <button class="btn btn-coral btn-med" data-play="spacewalk">▶ PLAY — Spacewalk</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="spacewalk" aria-label="Open the science behind Spacewalk Training only">🔬 The Science Behind This</button>
         </article>
         <article class="mission m-teal">
           <span class="m-icon" aria-hidden="true">🏃</span>
@@ -820,6 +807,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-exercise">🎯 Goal: 10 good moves · 45s</span>
           <span class="chip chip-todo" id="chip-exercise">Not done yet today</span>
           <button class="btn btn-teal btn-med" data-play="exercise">▶ PLAY — Exercise</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="exercise" aria-label="Open the science behind Exercise in Space only">🔬 The Science Behind This</button>
         </article>
         <article class="mission m-lime">
           <span class="m-icon" aria-hidden="true">🌱</span>
@@ -828,6 +816,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-habitat">🎯 Goal: All 4 meters alive · 35s</span>
           <span class="chip chip-todo" id="chip-habitat">Not done yet today</span>
           <button class="btn btn-med" style="background:var(--lime);color:#fff;box-shadow:0 5px 0 #437A24" data-play="habitat">▶ PLAY — Moon Base</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="habitat" aria-label="Open the science behind Moon Base Keeper only">🔬 The Science Behind This</button>
         </article>
         <article class="mission m-sky">
           <span class="m-icon" aria-hidden="true">☀️</span>
@@ -836,6 +825,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-weather">🎯 Goal: 4 of 7 alerts right · 1 LIVE!</span>
           <span class="chip chip-todo" id="chip-weather">Not done yet today</span>
           <button class="btn btn-med" style="background:var(--sky);color:#fff;box-shadow:0 5px 0 #1D5CA8" data-play="weather">▶ PLAY — Space Weather Watch</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="weather" aria-label="Open the science behind Space Weather Watch only">🔬 The Science Behind This</button>
         </article>
         <article class="mission m-amber">
           <span class="m-icon" aria-hidden="true">👽</span>
@@ -844,6 +834,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-defender">🎯 Goal: Clear 10 buddies · 4 correct · 75s</span>
           <span class="chip chip-todo" id="chip-defender">Not done yet today</span>
           <button class="btn btn-med" style="background:var(--warn);color:#fff;box-shadow:0 5px 0 #B96F06" data-play="defender">▶ PLAY — Defender</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="defender" aria-label="Open the science behind Moon Base Defender only">🔬 The Science Behind This</button>
         </article>
         <article class="mission" style="border-top:10px solid var(--teal)">
           <span class="m-icon" aria-hidden="true">🚀</span>
@@ -852,6 +843,7 @@ footer a{color:var(--sky);font-weight:900}
           <span class="goal" id="goal-journey">🎯 Goal: Fly to the Moon · Fix it with 3 correct · Clean with 3 more · Fly home!</span>
           <span class="chip chip-todo" id="chip-journey">Not done yet today</span>
           <button class="btn btn-teal btn-med" data-play="journey">▶ PLAY — Journey</button>
+          <button class="btn btn-ghost btn-med mission-card-science" type="button" data-science="journey" aria-label="Open the science behind Earth to Moon Journey only">🔬 The Science Behind This</button>
         </article>
       </div>
     </section>
@@ -1194,7 +1186,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-defender" class="view" aria-label="Moon base defender game">
     <div class="game-head"><h2>👽 Moon Base Defender</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="defender" aria-label="Listen to the Moon Base Defender instructions again" title="Hear the instructions">🔊</button>
-      <button class="btn btn-ghost btn-med" data-science="defender" aria-label="Open the science and instructions for Moon Base Defender">🔬 Science</button>
+      <button class="btn btn-ghost btn-med" data-science="defender" aria-label="Open the science behind Moon Base Defender">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back="missions">← Back to Missions</button></div>
     <div class="mission-howto" aria-label="How to play Moon Base Defender">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Defender</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1254,7 +1246,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-journey" class="view" aria-label="Earth to Moon journey game">
     <div class="game-head"><h2>🚀 Earth to Moon Journey</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="journey" aria-label="Listen to the Earth to Moon Journey instructions again" title="Hear the instructions">🔊</button>
-      <button class="btn btn-ghost btn-med" data-science="journey" aria-label="Open the science and instructions for Earth to Moon Journey">🔬 Science</button>
+      <button class="btn btn-ghost btn-med" data-science="journey" aria-label="Open the science behind Earth to Moon Journey">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back="missions">← Back to Missions</button></div>
     <div class="mission-howto" aria-label="How to play Earth to Moon Journey">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Journey</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1472,10 +1464,6 @@ footer a{color:var(--sky);font-weight:900}
       <h2 id="science-title">The Science Behind This</h2>
       <p id="science-subtitle"></p>
       <div class="fact" id="science-fact"><b>🔬 The science:</b> <span id="science-text"></span></div>
-      <p class="science-steps-title" id="science-steps-title">❓ How to Play — Step by Step</p>
-      <ol class="steps" id="science-steps"></ol>
-      <p class="howto-goal" id="science-goal" style="margin-bottom:0"></p>
-      <div id="science-missions" style="display:none"></div>
       <p id="science-status" aria-live="polite"></p>
       <div class="modal-btns">
         <button class="btn btn-listen" id="science-listen" style="font-size:19px;padding:12px 18px;min-height:52px;flex:1 1 130px">🔊 Listen</button>
@@ -2457,11 +2445,12 @@ var INSTRUCTIONS = {
   }
 };
 var pendingGame = null;
-/* ================= SCIENCE POP-UP (science + step-by-step instructions) =================
-   One pop-up per mission, holding BOTH: (1) the real NASA science behind
-   the mission — only facts already used elsewhere in this game — and
-   (2) the mission's clear step-by-step How to Play steps, taken from
-   INSTRUCTIONS so they always match the current difficulty level.
+/* ================= SCIENCE POP-UP (science only) =================
+   One pop-up per mission, holding ONLY the real NASA science behind
+   the mission — only facts already used elsewhere in this game.
+   The step-by-step How to Play instructions and the Goal live ONLY
+   on the game's own How to Play screen (top audio + bottom
+   instructions) — they are NOT repeated here.
    It opens from the "🔬 The Science Behind This" button on the How to
    Play screen (before START) and from the small "🔬 Science" button
    inside every mission. While it is open mid-game, scienceOpen pauses
@@ -2487,11 +2476,6 @@ function openScience(game){
   var sst = $("science-status"); if(sst) sst.textContent = "";
   $("science-subtitle").textContent = INSTRUCTIONS[game].name;
   $("science-text").textContent = SCIENCE_HINTS[game];
-  var ol = $("science-steps"); ol.innerHTML = "";
-  INSTRUCTIONS[game].steps.forEach(function(s){
-    var li = document.createElement("li"); li.textContent = s; ol.appendChild(li);
-  });
-  $("science-goal").textContent = INSTRUCTIONS[game].goal;
   $("science-wrap").classList.add("show");
 }
 function closeScience(){
@@ -2505,20 +2489,18 @@ $("howto-science-btn").addEventListener("click", function(){ openScience(pending
 document.querySelectorAll("[data-science]").forEach(function(b){
   b.addEventListener("click", function(){ openScience(b.getAttribute("data-science")); });
 });
-/* ---- Science pop-up audio: 🔊 Listen reads the science, then every
-   step, then the goal — with the SAME slow kid-friendly browser voice
-   (en-US, rate 0.75, pitch 1.0) and the SAME word-by-word highlight +
-   auto-scroll as the instructions and the welcome guide (real boundary
-   events where available, the timed fallback elsewhere). Sound OFF
-   means no voice — the words stay on screen to read, exactly like
-   everywhere else in the game. ⏹ Stop (or closing the pop-up) ends the
-   reading and clears every highlight. ---- */
+/* ---- Science pop-up audio: 🔊 Listen reads ONLY the science text —
+   never the How to Play steps or the Goal (those live only on the
+   game's own How to Play screen) — with the SAME slow kid-friendly
+   browser voice (en-US, rate 0.75, pitch 1.0) and the SAME
+   word-by-word highlight + auto-scroll as the instructions and the
+   welcome guide (real boundary events where available, the timed
+   fallback elsewhere). Sound OFF means no voice — the words stay on
+   screen to read, exactly like everywhere else in the game. ⏹ Stop
+   (or closing the pop-up) ends the reading and clears every
+   highlight. ---- */
 function scienceChunks(){
-  var chunks = [{ text: SCIENCE_HINTS[scienceGame], el: $("science-text") }];
-  var lis = $("science-steps").children;
-  INSTRUCTIONS[scienceGame].steps.forEach(function(s, i){ chunks.push({ text: s, el: lis[i] || null }); });
-  chunks.push({ text: INSTRUCTIONS[scienceGame].goal, el: $("science-goal") });
-  return chunks;
+  return [{ text: SCIENCE_HINTS[scienceGame], el: $("science-text") }];
 }
 function stopScienceSpeech(){
   speechGen++; /* supersede any in-flight science reading, like every other voice stop */
@@ -2561,7 +2543,7 @@ function speakScience(){
     highlightEnabled = true;
     stopWordTracking();
     duckMusic(true); /* background music dips while the science is read */
-    setStatus("🔊 Listen — reading the science and the steps out loud…");
+    setStatus("🔊 Listen — reading the science out loud…");
     function queueAll(){
       if(myGen !== speechGen) return;
       try{ if(synth.resume) synth.resume(); }catch(e){}
@@ -2615,48 +2597,31 @@ $("science-stop").addEventListener("click", function(){
   var st = $("science-status");
   if(st) st.textContent = "Stopped. Tap 🔊 Listen to hear it again.";
 });
-/* ================= SCIENCE POP-UP — LEVEL & ALL-MISSIONS MODES =================
+/* ================= SCIENCE POP-UP — LEVEL MODE =================
    The SAME pop-up (same Listen voice, word-by-word highlight, Sound
-   On/Off rule, Stop and Close) also opens from two more buttons:
-   (1) "🔬 The Science Behind This" on Choose Your Level — explains
-   Easy vs Commander Hard and how to choose, step by step; and
-   (2) "🔬 The Science Behind This" on Choose Your Training Mission —
-   a science intro plus step-by-step instructions for all 6 missions.
-   scienceMode says which content the pop-up is showing; the Listen
-   button reads whatever is on screen through currentScienceChunks(). */
+   On/Off rule, Stop and Close) also opens from the "🔬 The Science
+   Behind This" button on Choose Your Level — science only: how real
+   astronaut training builds up step by step, and why the two levels
+   differ. No step-by-step instructions and no Goal/Tip list here.
+   On Choose Your Training Mission there is NO single all-games
+   pop-up: each mission card has its own "🔬 The Science Behind This"
+   button (data-science, wired to openScience above), so the pop-up
+   shows ONLY that one mission's science, and 🔊 Listen reads only
+   that science. scienceMode says which single content the pop-up is
+   showing; Listen reads it via currentScienceChunks(). */
 var scienceMode = "mission";
-var missionsChunksCache = [];
 function setScienceLayout(mode){
   scienceMode = mode;
-  var single = (mode !== "missions");
-  $("science-fact").style.display = single ? "" : "none";
-  $("science-steps-title").style.display = single ? "" : "none";
-  $("science-steps").style.display = single ? "" : "none";
-  $("science-goal").style.display = single ? "" : "none";
-  $("science-missions").style.display = single ? "none" : "";
+  $("science-fact").style.display = "";
 }
 function currentScienceChunks(){
   if(scienceMode === "level"){
-    var chunks = [{ text: LEVEL_SCIENCE_TEXT, el: $("science-text") }];
-    var lis = $("science-steps").children;
-    LEVEL_SCIENCE_STEPS.forEach(function(s, i){ chunks.push({ text: s, el: lis[i] || null }); });
-    chunks.push({ text: LEVEL_SCIENCE_GOAL, el: $("science-goal") });
-    return chunks;
+    return [{ text: LEVEL_SCIENCE_TEXT, el: $("science-text") }];
   }
-  if(scienceMode === "missions") return missionsChunksCache;
   return scienceChunks();
 }
-/* ---- (1) Choose Your Level ---- */
+/* ---- Choose Your Level ---- */
 var LEVEL_SCIENCE_TEXT = "Real astronauts train step by step — nobody starts with the hardest job! NASA crews practise easy tasks first, then slowly take on harder ones as their skills grow. That is why this game has two levels. 🌱 Easy is made for younger cadets, ages 7 to 8: you get MORE time in every mission and there are FEWER hazards — less space junk to dodge, calmer challenges — so you can learn and explore without rushing. 🚀 Commander Hard is made for older cadets, age 10 and up: you get LESS time and there are MORE hazards, so every mission is a real challenge, just like advanced astronaut training. Neither level is better — the right level is the one that helps YOU learn and have fun!";
-var LEVEL_SCIENCE_STEPS = [
-  "Look at your age. If you are 7 or 8 years old, tap 🌱 Easy.",
-  "If you are 10 or older and you love a fast, tricky challenge, tap 🚀 Commander Hard.",
-  "Age 9? Start with 🌱 Easy for your first missions, then try 🚀 Commander Hard when you feel ready.",
-  "Tap the level button to pick it — a gold border shows your choice, and it is saved in your profile.",
-  "Your level changes EVERY mission you play: more or less time, more or fewer hazards.",
-  "You can change your level any time on this screen, before you pick a mission. Switching is always free — real astronauts practise at every level!"
-];
-var LEVEL_SCIENCE_GOAL = "🎯 Tip: Not sure which to pick? Start with Easy, win a mission, then try Commander Hard!";
 function openLevelScience(){
   stopSpeech(); /* reading time: any other voice stops, the pop-up is for reading */
   scienceOpen = true;
@@ -2665,57 +2630,9 @@ function openLevelScience(){
   var sst = $("science-status"); if(sst) sst.textContent = "";
   $("science-subtitle").textContent = "🎚️ Choose Your Level";
   $("science-text").textContent = LEVEL_SCIENCE_TEXT;
-  var ol = $("science-steps"); ol.innerHTML = "";
-  LEVEL_SCIENCE_STEPS.forEach(function(s){
-    var li = document.createElement("li"); li.textContent = s; ol.appendChild(li);
-  });
-  $("science-goal").textContent = LEVEL_SCIENCE_GOAL;
   $("science-wrap").classList.add("show");
 }
 $("level-science-btn").addEventListener("click", openLevelScience);
-/* ---- (2) Choose Your Training Mission — all 6 missions ----
-   Science intros come from SCIENCE_HINTS and the steps from
-   INSTRUCTIONS, so this pop-up always matches the per-mission pop-ups
-   and the currently selected difficulty level. */
-var MISSION_ORDER = ["spacewalk", "exercise", "habitat", "weather", "defender", "journey"];
-function openMissionsScience(){
-  stopSpeech();
-  scienceOpen = true;
-  scienceGame = null;
-  setScienceLayout("missions");
-  var sst = $("science-status"); if(sst) sst.textContent = "";
-  $("science-subtitle").textContent = "🎯 Choose Your Training Mission";
-  var box = $("science-missions"); box.innerHTML = "";
-  missionsChunksCache = [];
-  MISSION_ORDER.forEach(function(g, mi){
-    if(!SCIENCE_HINTS[g] || !INSTRUCTIONS[g]) return;
-    var sec = document.createElement("div"); sec.className = "science-mission";
-    var h = document.createElement("h3");
-    h.textContent = (mi + 1) + " · " + INSTRUCTIONS[g].icon + " " + INSTRUCTIONS[g].name;
-    sec.appendChild(h);
-    var fact = document.createElement("div"); fact.className = "sm-fact";
-    var b = document.createElement("b"); b.textContent = "🔬 The science: "; fact.appendChild(b);
-    var sp = document.createElement("span"); sp.textContent = SCIENCE_HINTS[g]; fact.appendChild(sp);
-    sec.appendChild(fact);
-    var st = document.createElement("p"); st.className = "sm-steps-title";
-    st.textContent = "❓ How to Play — Step by Step"; sec.appendChild(st);
-    var ol = document.createElement("ol"); ol.className = "steps sm-steps";
-    var stepEls = [];
-    INSTRUCTIONS[g].steps.forEach(function(s){
-      var li = document.createElement("li"); li.textContent = s; ol.appendChild(li); stepEls.push(li);
-    });
-    sec.appendChild(ol);
-    var goal = document.createElement("p"); goal.className = "sm-goal";
-    goal.textContent = INSTRUCTIONS[g].goal; sec.appendChild(goal);
-    box.appendChild(sec);
-    missionsChunksCache.push({ text: INSTRUCTIONS[g].name, el: h });
-    missionsChunksCache.push({ text: SCIENCE_HINTS[g], el: sp });
-    INSTRUCTIONS[g].steps.forEach(function(s, i){ missionsChunksCache.push({ text: s, el: stepEls[i] || null }); });
-    missionsChunksCache.push({ text: INSTRUCTIONS[g].goal, el: goal });
-  });
-  $("science-wrap").classList.add("show");
-}
-$("missions-science-btn").addEventListener("click", openMissionsScience);
 /* ---- B5: touch / small-screen detection — touch wording on phones & tablets, keyboard wording only on desktop ---- */
 var IS_TOUCH_DEVICE = false;
 try{ IS_TOUCH_DEVICE = (("ontouchstart" in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) || window.innerWidth <= 820); }catch(e){}

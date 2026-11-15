@@ -58,8 +58,10 @@ Inside the game, the Dashboard has a tab **"🏆 How We Meet the Challenge"** li
 - **Family voices:** Welcome — Mani (dad); Spacewalk + Earth to Moon Journey — Thanesh (son, 10); Exercise + Moon Base Defender — Mounaashree (daughter, 8); Moon Base Keeper + Space Weather Watch — Gracy (mom). Recorded by the family, with browser-voice fallback and **word-by-word highlighting** (the exact spoken word lights up and scrolls into view) on every screen.
 - **Music:** a soft original music-box tune in C major, synthesized live, plays quietly only inside missions, ducks to a whisper whenever a voice speaks, and stops on the home screen or with Sound Off.
 - **Science pop-ups:** every mission has a "Science Behind This" pop-up (science only, audio plays by default, 🔊 Listen replays, ⏹ Stop stops it). It opens automatically the first time you play a mission each day, so every kid learns the science before playing.
+- **Question & answer audio:** every quiz reads itself aloud — the question and its choices play when the question appears, and the real NASA fact is read after answering — with a 🔊 Hear the Question / ⏹ Stop button on each question screen (Weather Watch, Defender, Journey gate, and Journey fix-it/clean-up questions). Word-by-word highlighting follows the reading.
+- **No automatic navigation:** when any audio finishes, the game stays on the same screen and waits — the kid taps a button to move on. Nothing jumps ahead on a timer.
 - **For Parents & Teachers:** a Dashboard tab with what kids learn, how to play together as a family or classroom, and 3 discussion questions for after playing.
-- **Difficulty:** Easy (7–8) and Commander Hard (10+). **Support:** browsers from 2016–2026 (full support 2020+; graceful text-only fallback on older ones). No horizontal scrolling, big tap targets (48–56px), reduced-motion respected.
+- **Difficulty:** Easy (7–8) and Commander Hard (10+). **Support:** browsers from 2016–2026 (full support 2020+; graceful text-only fallback on older ones). Tested in Chromium, Firefox, and WebKit (the Safari engine) across phone, tablet, laptop, and desktop. No horizontal scrolling, big tap targets (48–56px), reduced-motion respected.
 
 ## How we built it — the kids tested it, then made it better
 
@@ -71,6 +73,7 @@ Inside the game, the Dashboard has a tab **"🏆 How We Meet the Challenge"** li
 6. Mounaashree playtested every mission on Easy and recorded the Exercise and Defender voices.
 7. Mani suggested the science must be learned, not skipped — so the Science Behind This pop-up now opens by itself the first time a mission is played each day.
 8. Remo (our AI assistant) suggested four more improvements, all built: shared oxygen/power/food across all 7 days, a "Today I learned that…" line after every mission, a daily space-weather event, and a Parents & Teachers page — plus Play Now as Guest, a certificate with name and date, the one-line home pitch, and a fully working offline path.
+9. Mani reported the family voices were not playing on his iPhone — the browser voice came instead. The cause was the playback path: slow or interrupted loads were given up on too fast. Fixed so a recording retries until it plays, and the browser voice is used only on a real media error. Mani also asked for audio on every question and answer, and for the game never to move screens by itself when audio ends — both built: every quiz now reads aloud, and audio ending never navigates.
 
 ## Team
 
@@ -80,7 +83,7 @@ Built with help from **Muse (Remo)**, our AI assistant — AI tools used are dis
 
 ## Playtesting
 
-End-to-end tested in real browsers across phone (360px, 390px), tablet (768px), laptop (1280×800), and desktop (1920px): all 6 missions won and lost, Commander journey, science gate, voices, Switch/Add Cadet, Guest play, Dashboard, and the offline path — zero bugs in the final test (audit v8, Nov 15, 2026). Live NASA data (APOD / Mars photos / DONKI) still needs a check on a real home network, and real-child play feel was tested by Thanesh (10) and Mounaashree (8) themselves.
+End-to-end tested in real browsers across phone (360px, 390px), tablet (768px), laptop (1280×800), and desktop (1920px): all 6 missions won and lost, Commander journey, science gate, voices, Q&A audio, no-auto-navigation, Switch/Add Cadet, Guest play, Dashboard, and the offline path — zero bugs in the final test (audit v9, Nov 15, 2026), in Chromium, Firefox, and WebKit. Live NASA data (APOD / Mars photos / DONKI) still needs a check on a real home network, and real-child play feel was tested by Thanesh (10) and Mounaashree (8) themselves.
 
 ## Tech
 

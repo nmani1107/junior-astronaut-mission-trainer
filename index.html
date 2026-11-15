@@ -349,6 +349,28 @@ section.block{margin:22px 0}
 .science-steps-title{font-family:"Baloo 2";font-weight:800;font-size:19px;color:var(--ink);text-align:left;margin:16px 0 8px}
 #science-steps{margin-bottom:12px}
 #science-steps li{font-size:16px;min-height:50px;padding:11px 14px 11px 58px}
+/* Dashboard: badges, Live from NASA, facts, sources & credits live in
+   their own view now, so home stays clean (profile, level, missions) */
+.dashboard-open-btn{width:100%}
+.dashboard-link-note{text-align:center;color:var(--muted);font-weight:700;font-size:15px;margin:10px 0 0}
+.dashboard-head{background:var(--panel);border:3px solid var(--line);border-radius:24px;padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px;text-align:center}
+.dashboard-head h2{font-size:clamp(24px,4.4vw,32px);font-weight:800;margin:0 0 6px}
+.dashboard-head p{margin:0 auto 14px;max-width:580px;color:var(--muted);font-weight:700;font-size:16.5px}
+/* "🔬 The Science Behind This" buttons on the Choose Your Level and
+   Choose Your Training Mission sections — same pop-up, new content */
+.section-science-btn{width:100%;margin-top:12px}
+#missions .section-science-btn{margin:0 0 14px}
+/* Missions overview inside the science pop-up: one block per mission,
+   each with its science intro, its step-by-step list and its goal */
+.science-mission{text-align:left;margin-bottom:22px}
+.science-mission:last-child{margin-bottom:6px}
+.science-mission h3{font-family:"Baloo 2";font-weight:800;font-size:21px;color:var(--ink);margin:0 0 8px}
+.science-mission .sm-fact{background:var(--panel2);border:2px solid var(--line);border-radius:14px;padding:11px 13px;font-size:15.5px;line-height:1.5}
+.science-mission .sm-fact b{color:var(--teal)}
+.science-mission .sm-steps-title{font-family:"Baloo 2";font-weight:800;font-size:17px;color:var(--ink);margin:12px 0 8px}
+.science-mission .sm-steps{margin-bottom:10px}
+.science-mission .sm-steps li{font-size:15.5px;min-height:48px;padding:10px 13px 10px 56px}
+.science-mission .sm-goal{background:var(--panel2);border:2px dashed var(--teal);border-radius:12px;padding:9px 12px;font-weight:900;font-size:15px;text-align:center;margin:0}
 .listen-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px}
 .btn-listen{background:var(--teal);color:#fff;box-shadow:0 5px 0 #0B7472;font-size:23px;padding:16px 30px;min-height:64px}
 .btn-listen:active{transform:translateY(3px);box-shadow:0 2px 0 #0B7472}
@@ -748,10 +770,12 @@ footer a{color:var(--sky);font-weight:900}
         <button type="button" class="diff-btn" id="diff-easy" aria-pressed="true">🌱 Easy<span>Ages 7–8 · More time, fewer hazards</span></button>
         <button type="button" class="diff-btn" id="diff-hard" aria-pressed="false">🚀 Commander Hard<span>Age 10+ · Less time, more hazards</span></button>
       </div>
+      <button class="btn btn-teal btn-big section-science-btn" id="level-science-btn" type="button">🔬 The Science Behind This</button>
     </section>
 
     <section class="block" id="missions">
       <div class="block-head"><h2>🎯 Choose Your Training Mission</h2><p>Each win finishes one training day.</p></div>
+      <button class="btn btn-teal btn-big section-science-btn" id="missions-science-btn" type="button">🔬 The Science Behind This</button>
       <div class="missions">
         <article class="mission m-coral">
           <span class="m-icon" aria-hidden="true">🧑‍🚀</span>
@@ -804,6 +828,19 @@ footer a{color:var(--sky);font-weight:900}
       </div>
     </section>
 
+    <section class="block" id="dashboard-link-block">
+      <button class="btn btn-sun btn-big dashboard-open-btn" id="dashboard-btn" type="button">📊 Dashboard — My Progress &amp; Details</button>
+      <p class="dashboard-link-note">Your badges, live NASA photos, cool space facts, sources &amp; credits live here now — tap to open!</p>
+    </section>
+  </main>
+
+  <!-- ================= DASHBOARD ================= -->
+  <main id="view-dashboard" class="view" aria-label="Dashboard — my progress and details">
+    <div class="dashboard-head">
+      <h2>📊 Dashboard — My Progress &amp; Details</h2>
+      <p>Your badges, live NASA photos, cool space facts, the NASA sources behind the game, and the credits — all in one place. Tap Show ▼ to open any part!</p>
+      <button class="btn btn-ghost btn-med" data-back type="button">← Back to Home</button>
+    </div>
     <section class="block" id="live-nasa">
       <div class="block-head"><h2>📡 Live from NASA</h2><p>Real space data, fresh when you're online!</p><button type="button" class="btn btn-ghost btn-med collapse-toggle" data-collapse-toggle="live-body" aria-expanded="false">Show ▼</button></div>
       <div class="collapsible-body" id="live-body" hidden>
@@ -865,7 +902,7 @@ footer a{color:var(--sky);font-weight:900}
             <span class="source-num" aria-hidden="true">1</span>
             <div>
               <h3>NASA Open APIs<span class="live-tag">● LIVE in the game</span></h3>
-              <p><b>How it's used:</b> The “📡 Live from NASA” section on this home screen fetches <b>today's Astronomy Picture of the Day (APOD)</b> and a <b>real Mars rover photo</b> live from api.nasa.gov every time the page opens. Each photo is shown with its NASA credit line. If the API is busy or you're offline, backup NASA facts appear instead — the game always works.</p>
+              <p><b>How it's used:</b> The “📡 Live from NASA” section on this Dashboard screen fetches <b>today's Astronomy Picture of the Day (APOD)</b> and a <b>real Mars rover photo</b> live from api.nasa.gov every time the page opens. Each photo is shown with its NASA credit line. If the API is busy or you're offline, backup NASA facts appear instead — the game always works.</p>
               <p><a href="https://api.nasa.gov" target="_blank" rel="noopener">api.nasa.gov</a></p>
             </div>
           </li>
@@ -921,6 +958,23 @@ footer a{color:var(--sky);font-weight:900}
       </div>
       </div>
     </section>
+    <section class="block" id="credits-block">
+      <div class="block-head"><h2>📚 Credits &amp; NASA Sources</h2><button type="button" class="btn btn-ghost btn-med collapse-toggle" data-collapse-toggle="credits-body" aria-expanded="false">Show ▼</button></div>
+    <div class="collapsible-body" id="credits-body" hidden>
+    <p>This training game was built for the <b>NASA Space Apps Challenge 2026 — “Build a Junior Astronaut Mission Trainer.”</b> The facts and alert styles inside the game come from these real NASA resources:</p>
+    <ul>
+      <li><b>NASA Open APIs</b> (api.nasa.gov) — free NASA data for builders, including the DONKI space-weather service. <b>This game fetches it live:</b> today's Astronomy Picture of the Day and a fresh Mars rover photo appear in the “Live from NASA” section, and the Space Weather game pulls real DONKI flare &amp; storm reports — with real backup facts if you're offline.</li>
+      <li><b>DONKI — Space Weather Database Of Notifications, Knowledge, Information</b> (NASA CCMC) — solar flares, CMEs and geomagnetic storms tracked by the Moon-to-Mars Space Weather Analysis Office. <a href="http://ccmc.gsfc.nasa.gov/tools/DONKI/" target="_blank" rel="noopener">Visit DONKI</a></li>
+      <li><b>RadLab</b> (NASA Open Science Data Repository) — real radiation measurements from the ISS, the Moon and Mars instruments. <a href="https://visualization.osdr.nasa.gov/radlab/gui/overview/" target="_blank" rel="noopener">Visit RadLab</a></li>
+      <li><b>NASA Solar System Treks — Moon Trek &amp; Mars Trek</b> — real Moon and Mars maps made from spacecraft data. <a href="http://trek.nasa.gov/home/" target="_blank" rel="noopener">Visit Solar System Treks</a></li>
+      <li>Body-in-space and exercise facts: NASA Human Research Program (astronaut exercise, bone loss). Food-growing facts: NASA Veggie plant growth system on the International Space Station.</li>
+    </ul>
+    <p>Made with ❤️ by our family team for young space explorers. No login, no downloads — just press PLAY. Illustration on this page is original artwork made for this game.</p>
+    </div>
+    </section>
+    <div class="controls-row">
+      <button class="btn btn-ghost btn-med" data-back type="button">← Back to Home</button>
+    </div>
   </main>
 
   <!-- ================= SPACEWALK ================= -->
@@ -1383,10 +1437,11 @@ footer a{color:var(--sky);font-weight:900}
       <div class="m-emoji" aria-hidden="true">🔬</div>
       <h2 id="science-title">The Science Behind This</h2>
       <p id="science-subtitle"></p>
-      <div class="fact"><b>🔬 The science:</b> <span id="science-text"></span></div>
-      <p class="science-steps-title">❓ How to Play — Step by Step</p>
+      <div class="fact" id="science-fact"><b>🔬 The science:</b> <span id="science-text"></span></div>
+      <p class="science-steps-title" id="science-steps-title">❓ How to Play — Step by Step</p>
       <ol class="steps" id="science-steps"></ol>
       <p class="howto-goal" id="science-goal" style="margin-bottom:0"></p>
+      <div id="science-missions" style="display:none"></div>
       <p id="science-status" aria-live="polite"></p>
       <div class="modal-btns">
         <button class="btn btn-listen" id="science-listen" style="font-size:19px;padding:12px 18px;min-height:52px;flex:1 1 130px">🔊 Listen</button>
@@ -1417,22 +1472,6 @@ footer a{color:var(--sky);font-weight:900}
     </div>
   </div>
 
-  <!-- ================= CREDITS ================= -->
-  <footer>
-    <h2>📚 Credits &amp; NASA Sources</h2>
-    <button type="button" class="btn btn-ghost btn-med collapse-toggle" data-collapse-toggle="credits-body" aria-expanded="false">Show ▼</button>
-    <div class="collapsible-body" id="credits-body" hidden>
-    <p>This training game was built for the <b>NASA Space Apps Challenge 2026 — “Build a Junior Astronaut Mission Trainer.”</b> The facts and alert styles inside the game come from these real NASA resources:</p>
-    <ul>
-      <li><b>NASA Open APIs</b> (api.nasa.gov) — free NASA data for builders, including the DONKI space-weather service. <b>This game fetches it live:</b> today's Astronomy Picture of the Day and a fresh Mars rover photo appear in the “Live from NASA” section, and the Space Weather game pulls real DONKI flare &amp; storm reports — with real backup facts if you're offline.</li>
-      <li><b>DONKI — Space Weather Database Of Notifications, Knowledge, Information</b> (NASA CCMC) — solar flares, CMEs and geomagnetic storms tracked by the Moon-to-Mars Space Weather Analysis Office. <a href="http://ccmc.gsfc.nasa.gov/tools/DONKI/" target="_blank" rel="noopener">Visit DONKI</a></li>
-      <li><b>RadLab</b> (NASA Open Science Data Repository) — real radiation measurements from the ISS, the Moon and Mars instruments. <a href="https://visualization.osdr.nasa.gov/radlab/gui/overview/" target="_blank" rel="noopener">Visit RadLab</a></li>
-      <li><b>NASA Solar System Treks — Moon Trek &amp; Mars Trek</b> — real Moon and Mars maps made from spacecraft data. <a href="http://trek.nasa.gov/home/" target="_blank" rel="noopener">Visit Solar System Treks</a></li>
-      <li>Body-in-space and exercise facts: NASA Human Research Program (astronaut exercise, bone loss). Food-growing facts: NASA Veggie plant growth system on the International Space Station.</li>
-    </ul>
-    <p>Made with ❤️ by our family team for young space explorers. No login, no downloads — just press PLAY. Illustration on this page is original artwork made for this game.</p>
-    </div>
-  </footer>
   <p class="small-note">Junior Astronaut Mission Trainer · NASA Space Apps Challenge 2026 · Play, learn, and reach for the Moon! 🌕</p>
 </div>
 
@@ -2408,6 +2447,7 @@ function openScience(game){
   stopSpeech(); /* reading time: the instruction voice stops, the pop-up is for reading */
   scienceOpen = true;
   scienceGame = game;
+  setScienceLayout("mission");
   var sst = $("science-status"); if(sst) sst.textContent = "";
   $("science-subtitle").textContent = INSTRUCTIONS[game].name;
   $("science-text").textContent = SCIENCE_HINTS[game];
@@ -2454,7 +2494,7 @@ function stopScienceSpeech(){
 function speakScience(){
   var statusEl = $("science-status");
   function setStatus(m){ if(statusEl) statusEl.textContent = m; }
-  if(!scienceGame || !SCIENCE_HINTS[scienceGame]) return;
+  if(scienceMode === "mission" && (!scienceGame || !SCIENCE_HINTS[scienceGame])) return;
   if(!state.sound){
     setStatus("🔇 Sound is OFF — turn Sound On at the top of the screen to hear this read aloud. You can still read it here!");
     return;
@@ -2463,7 +2503,8 @@ function speakScience(){
     setStatus("Sorry — this browser can't read out loud. No problem: you can read it right here!");
     return;
   }
-  var chunks = scienceChunks();
+  var chunks = currentScienceChunks();
+  if(!chunks || !chunks.length) return;
   try{
     var synth = window.speechSynthesis;
     stopVoiceAudio(); /* this reading supersedes any family recording */
@@ -2538,6 +2579,107 @@ $("science-stop").addEventListener("click", function(){
   var st = $("science-status");
   if(st) st.textContent = "Stopped. Tap 🔊 Listen to hear it again.";
 });
+/* ================= SCIENCE POP-UP — LEVEL & ALL-MISSIONS MODES =================
+   The SAME pop-up (same Listen voice, word-by-word highlight, Sound
+   On/Off rule, Stop and Close) also opens from two more buttons:
+   (1) "🔬 The Science Behind This" on Choose Your Level — explains
+   Easy vs Commander Hard and how to choose, step by step; and
+   (2) "🔬 The Science Behind This" on Choose Your Training Mission —
+   a science intro plus step-by-step instructions for all 6 missions.
+   scienceMode says which content the pop-up is showing; the Listen
+   button reads whatever is on screen through currentScienceChunks(). */
+var scienceMode = "mission";
+var missionsChunksCache = [];
+function setScienceLayout(mode){
+  scienceMode = mode;
+  var single = (mode !== "missions");
+  $("science-fact").style.display = single ? "" : "none";
+  $("science-steps-title").style.display = single ? "" : "none";
+  $("science-steps").style.display = single ? "" : "none";
+  $("science-goal").style.display = single ? "" : "none";
+  $("science-missions").style.display = single ? "none" : "";
+}
+function currentScienceChunks(){
+  if(scienceMode === "level"){
+    var chunks = [{ text: LEVEL_SCIENCE_TEXT, el: $("science-text") }];
+    var lis = $("science-steps").children;
+    LEVEL_SCIENCE_STEPS.forEach(function(s, i){ chunks.push({ text: s, el: lis[i] || null }); });
+    chunks.push({ text: LEVEL_SCIENCE_GOAL, el: $("science-goal") });
+    return chunks;
+  }
+  if(scienceMode === "missions") return missionsChunksCache;
+  return scienceChunks();
+}
+/* ---- (1) Choose Your Level ---- */
+var LEVEL_SCIENCE_TEXT = "Real astronauts train step by step — nobody starts with the hardest job! NASA crews practise easy tasks first, then slowly take on harder ones as their skills grow. That is why this game has two levels. 🌱 Easy is made for younger cadets, ages 7 to 8: you get MORE time in every mission and there are FEWER hazards — less space junk to dodge, calmer challenges — so you can learn and explore without rushing. 🚀 Commander Hard is made for older cadets, age 10 and up: you get LESS time and there are MORE hazards, so every mission is a real challenge, just like advanced astronaut training. Neither level is better — the right level is the one that helps YOU learn and have fun!";
+var LEVEL_SCIENCE_STEPS = [
+  "Look at your age. If you are 7 or 8 years old, tap 🌱 Easy.",
+  "If you are 10 or older and you love a fast, tricky challenge, tap 🚀 Commander Hard.",
+  "Age 9? Start with 🌱 Easy for your first missions, then try 🚀 Commander Hard when you feel ready.",
+  "Tap the level button to pick it — a gold border shows your choice, and it is saved in your profile.",
+  "Your level changes EVERY mission you play: more or less time, more or fewer hazards.",
+  "You can change your level any time on this screen, before you pick a mission. Switching is always free — real astronauts practise at every level!"
+];
+var LEVEL_SCIENCE_GOAL = "🎯 Tip: Not sure which to pick? Start with Easy, win a mission, then try Commander Hard!";
+function openLevelScience(){
+  stopSpeech(); /* reading time: any other voice stops, the pop-up is for reading */
+  scienceOpen = true;
+  scienceGame = null;
+  setScienceLayout("level");
+  var sst = $("science-status"); if(sst) sst.textContent = "";
+  $("science-subtitle").textContent = "🎚️ Choose Your Level";
+  $("science-text").textContent = LEVEL_SCIENCE_TEXT;
+  var ol = $("science-steps"); ol.innerHTML = "";
+  LEVEL_SCIENCE_STEPS.forEach(function(s){
+    var li = document.createElement("li"); li.textContent = s; ol.appendChild(li);
+  });
+  $("science-goal").textContent = LEVEL_SCIENCE_GOAL;
+  $("science-wrap").classList.add("show");
+}
+$("level-science-btn").addEventListener("click", openLevelScience);
+/* ---- (2) Choose Your Training Mission — all 6 missions ----
+   Science intros come from SCIENCE_HINTS and the steps from
+   INSTRUCTIONS, so this pop-up always matches the per-mission pop-ups
+   and the currently selected difficulty level. */
+var MISSION_ORDER = ["spacewalk", "exercise", "habitat", "weather", "defender", "journey"];
+function openMissionsScience(){
+  stopSpeech();
+  scienceOpen = true;
+  scienceGame = null;
+  setScienceLayout("missions");
+  var sst = $("science-status"); if(sst) sst.textContent = "";
+  $("science-subtitle").textContent = "🎯 Choose Your Training Mission";
+  var box = $("science-missions"); box.innerHTML = "";
+  missionsChunksCache = [];
+  MISSION_ORDER.forEach(function(g, mi){
+    if(!SCIENCE_HINTS[g] || !INSTRUCTIONS[g]) return;
+    var sec = document.createElement("div"); sec.className = "science-mission";
+    var h = document.createElement("h3");
+    h.textContent = (mi + 1) + " · " + INSTRUCTIONS[g].icon + " " + INSTRUCTIONS[g].name;
+    sec.appendChild(h);
+    var fact = document.createElement("div"); fact.className = "sm-fact";
+    var b = document.createElement("b"); b.textContent = "🔬 The science: "; fact.appendChild(b);
+    var sp = document.createElement("span"); sp.textContent = SCIENCE_HINTS[g]; fact.appendChild(sp);
+    sec.appendChild(fact);
+    var st = document.createElement("p"); st.className = "sm-steps-title";
+    st.textContent = "❓ How to Play — Step by Step"; sec.appendChild(st);
+    var ol = document.createElement("ol"); ol.className = "steps sm-steps";
+    var stepEls = [];
+    INSTRUCTIONS[g].steps.forEach(function(s){
+      var li = document.createElement("li"); li.textContent = s; ol.appendChild(li); stepEls.push(li);
+    });
+    sec.appendChild(ol);
+    var goal = document.createElement("p"); goal.className = "sm-goal";
+    goal.textContent = INSTRUCTIONS[g].goal; sec.appendChild(goal);
+    box.appendChild(sec);
+    missionsChunksCache.push({ text: INSTRUCTIONS[g].name, el: h });
+    missionsChunksCache.push({ text: SCIENCE_HINTS[g], el: sp });
+    INSTRUCTIONS[g].steps.forEach(function(s, i){ missionsChunksCache.push({ text: s, el: stepEls[i] || null }); });
+    missionsChunksCache.push({ text: INSTRUCTIONS[g].goal, el: goal });
+  });
+  $("science-wrap").classList.add("show");
+}
+$("missions-science-btn").addEventListener("click", openMissionsScience);
 /* ---- B5: touch / small-screen detection — touch wording on phones & tablets, keyboard wording only on desktop ---- */
 var IS_TOUCH_DEVICE = false;
 try{ IS_TOUCH_DEVICE = (("ontouchstart" in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) || window.innerWidth <= 820); }catch(e){}
@@ -3288,6 +3430,10 @@ document.querySelectorAll("[data-goto]").forEach(function(b){
   b.addEventListener("click", function(){ document.getElementById(b.getAttribute("data-goto")).scrollIntoView({behavior:"smooth"}); });
 });
 $("how-btn").addEventListener("click", function(){ var h=$("howto-box"); h.hidden = !h.hidden; });
+/* Dashboard view: badges, Live from NASA, facts, sources & credits moved
+   off the home screen — opened from the big home button, left via the
+   Back to Home buttons (data-back) inside it. */
+$("dashboard-btn").addEventListener("click", function(){ showView("dashboard"); });
 $("sound-btn").addEventListener("click", function(){
   state.sound = !state.sound;
   renderSoundBtn();

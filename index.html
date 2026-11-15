@@ -723,6 +723,7 @@ footer a{color:var(--sky);font-weight:900}
       </div>
       <div class="profile-actions">
         <button class="btn btn-sun btn-med" id="profile-switch-btn">🔄 Switch Cadet</button>
+        <button class="btn btn-teal btn-med" id="profile-add-btn">➕ Add New Cadet</button>
         <button class="btn btn-ghost btn-med" id="profile-edit-btn">✏️ Change Name</button>
       </div>
     </div>
@@ -1963,7 +1964,7 @@ function renderProfile(){
     var n = cadetCount();
     note.textContent = n > 1 ?
       (n + " cadets are saved on this device — tap 🔄 Switch Cadet to change who is training. Each cadet keeps their own progress.") :
-      "Your progress is saved on this device only. Training with a friend or family? Add them with 🔄 Switch Cadet — each cadet keeps their own progress.";
+      "Your progress is saved on this device only. Training with a friend or family? Tap ➕ Add New Cadet to add them — each cadet keeps their own progress.";
   }
 }
 /* ================= DIFFICULTY UI + TEXTS =================
@@ -3678,6 +3679,7 @@ function renderSwitchList(){
 function openSwitch(){ renderSwitchList(); $("switch-wrap").hidden = false; }
 function closeSwitch(){ $("switch-wrap").hidden = true; }
 $("profile-switch-btn").addEventListener("click", openSwitch);
+$("profile-add-btn").addEventListener("click", function(){ openAddCadet(); });
 $("switch-close-btn").addEventListener("click", closeSwitch);
 $("switch-add-btn").addEventListener("click", function(){ closeSwitch(); openAddCadet(); });
 

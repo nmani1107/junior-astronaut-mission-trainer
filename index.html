@@ -339,6 +339,16 @@ section.block{margin:22px 0}
   width:34px;height:34px;border-radius:50%;background:var(--sky);color:#fff;font-family:"Baloo 2";font-weight:800;
   font-size:19px;display:flex;align-items:center;justify-content:center}
 .howto-goal{background:var(--panel2);border:2px dashed var(--teal);border-radius:14px;padding:11px 16px;font-weight:900;margin-bottom:16px;text-align:center}
+/* "The Science Behind This" — a button on How to Play (before START) and a
+   small Science button inside every mission; both open the science pop-up */
+.howto-science-btn{width:100%;margin-bottom:10px}
+#science-wrap .modal{border-color:var(--teal)}
+#science-subtitle{font-family:"Baloo 2";font-weight:800;font-size:20px;color:var(--ink);margin:0 0 10px}
+#science-text{font-size:16.5px;line-height:1.55}
+#science-status{font-size:14.5px;font-weight:800;color:var(--muted);min-height:20px;margin:10px 0 0;text-align:center}
+.science-steps-title{font-family:"Baloo 2";font-weight:800;font-size:19px;color:var(--ink);text-align:left;margin:16px 0 8px}
+#science-steps{margin-bottom:12px}
+#science-steps li{font-size:16px;min-height:50px;padding:11px 14px 11px 58px}
 .listen-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:10px}
 .btn-listen{background:var(--teal);color:#fff;box-shadow:0 5px 0 #0B7472;font-size:23px;padding:16px 30px;min-height:64px}
 .btn-listen:active{transform:translateY(3px);box-shadow:0 2px 0 #0B7472}
@@ -389,6 +399,27 @@ section.block{margin:22px 0}
 .profile-stats{font-weight:900;font-size:16.5px;color:var(--muted);margin-top:2px}
 .profile-stats b{color:var(--ink)}
 .profile-note{font-size:13.5px;font-weight:700;color:var(--muted);margin-top:2px}
+.profile-actions{display:flex;flex-direction:column;gap:8px;flex:0 0 auto}
+.profile-actions .btn{white-space:nowrap}
+@media (max-width:720px){.profile-actions{flex:1 1 100%;flex-direction:row;flex-wrap:wrap}.profile-actions .btn{flex:1 1 150px}}
+
+/* ---------- Switch Cadet ---------- */
+.switch-card{max-width:520px}
+.cadet-list{display:grid;gap:10px;margin:16px 0 4px;text-align:left}
+.cadet-row{display:flex;gap:12px;align-items:center;width:100%;background:var(--panel2);border:3px solid var(--line);
+  border-radius:16px;padding:12px 14px;color:var(--ink);text-align:left;font-family:inherit}
+button.cadet-row{cursor:pointer}
+button.cadet-row:active{transform:translateY(2px)}
+.cadet-row.current{border-color:var(--sun);background:#FFF3C4;color:#3A2A00}
+@media (prefers-color-scheme: dark){.cadet-row.current{background:#5A4A08;color:#FFE9A8}}
+.cadet-row .c-avatar{font-size:34px;line-height:1;flex:0 0 auto}
+.cadet-row .c-main{flex:1;min-width:0}
+.cadet-row .c-name{font-family:"Baloo 2";font-weight:800;font-size:20px;display:block;line-height:1.2;overflow-wrap:break-word}
+.cadet-row .c-stats{font-size:13.5px;font-weight:800;color:var(--muted);display:block}
+.cadet-row.current .c-stats{color:inherit;opacity:.85}
+.cadet-row .c-go{font-family:"Baloo 2";font-weight:800;font-size:15px;flex:0 0 auto;background:var(--sun);color:var(--sun-ink);border-radius:999px;padding:6px 12px;white-space:nowrap}
+.cadet-row.current .c-go{background:var(--teal);color:#fff}
+.switch-empty{font-weight:800;color:var(--muted);text-align:center;margin:0}
 
 /* ---------- Motivation & cheers ---------- */
 .motivation-card{background:#FFF3C4;border:3px solid var(--sun);border-radius:20px;padding:16px 18px;box-shadow:var(--shadow);
@@ -688,9 +719,12 @@ footer a{color:var(--sky);font-weight:900}
       <div class="profile-main">
         <div class="profile-name" id="profile-name">Cadet, welcome aboard!</div>
         <div class="profile-stats" id="profile-stats">Day <b>1 of 7</b> · <b>0</b> XP · <b>0 of 9</b> badges · <b>0</b> stars · Rank: <b>Cadet</b></div>
-        <div class="profile-note">Progress is saved on this device only.</div>
+        <div class="profile-note" id="profile-note">Your progress is saved on this device only.</div>
       </div>
-      <button class="btn btn-ghost btn-med" id="profile-edit-btn">✏️ Change Name</button>
+      <div class="profile-actions">
+        <button class="btn btn-sun btn-med" id="profile-switch-btn">🔄 Switch Cadet</button>
+        <button class="btn btn-ghost btn-med" id="profile-edit-btn">✏️ Change Name</button>
+      </div>
     </div>
 
     <div class="motivation-card" id="home-motivation-card" aria-label="Today's motivation">
@@ -892,6 +926,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-spacewalk" class="view" aria-label="Spacewalk training game">
     <div class="game-head"><h2>🧑‍🚀 Spacewalk Training</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="spacewalk" aria-label="Listen to the Spacewalk instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="spacewalk" aria-label="Open the science behind Spacewalk Training">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Spacewalk Training">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Spacewalk</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -936,6 +971,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-exercise" class="view" aria-label="Exercise in space game">
     <div class="game-head"><h2>🏃 Exercise in Space</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="exercise" aria-label="Listen to the Exercise instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="exercise" aria-label="Open the science behind Exercise in Space">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Exercise in Space">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Exercise</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -978,6 +1014,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-habitat" class="view" aria-label="Moon base keeper game">
     <div class="game-head"><h2>🌱 Moon Base Keeper</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="habitat" aria-label="Listen to the Moon Base Keeper instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="habitat" aria-label="Open the science behind Moon Base Keeper">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Moon Base Keeper">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Moon Base</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1024,6 +1061,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-weather" class="view" aria-label="Space weather watch game">
     <div class="game-head"><h2>☀️ Space Weather Watch</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="weather" aria-label="Listen to the Space Weather Watch instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="weather" aria-label="Open the science behind Space Weather Watch">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Space Weather Watch">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Space Weather Watch</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1074,6 +1112,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-defender" class="view" aria-label="Moon base defender game">
     <div class="game-head"><h2>👽 Moon Base Defender</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="defender" aria-label="Listen to the Moon Base Defender instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="defender" aria-label="Open the science and instructions for Moon Base Defender">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Moon Base Defender">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Defender</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1133,6 +1172,7 @@ footer a{color:var(--sky);font-weight:900}
   <main id="view-journey" class="view" aria-label="Earth to Moon journey game">
     <div class="game-head"><h2>🚀 Earth to Moon Journey</h2><span class="spacer"></span>
       <button class="icon-btn speak-btn" data-speak="journey" aria-label="Listen to the Earth to Moon Journey instructions again" title="Hear the instructions">🔊</button>
+      <button class="btn btn-ghost btn-med" data-science="journey" aria-label="Open the science and instructions for Earth to Moon Journey">🔬 Science</button>
       <button class="btn btn-ghost btn-med" data-back>← Back to Base</button></div>
     <div class="mission-howto" aria-label="How to play Earth to Moon Journey">
       <div class="mission-howto-head"><span class="mh-title">❓ How to Play — Journey</span><button type="button" class="howto-toggle" aria-expanded="false">Show ▼</button></div>
@@ -1218,6 +1258,7 @@ footer a{color:var(--sky);font-weight:900}
         <p id="howto-intro">Read the steps below — they are read out loud automatically when this screen opens! Tap Listen to hear them again.</p>
       </div>
     </div>
+    <button class="btn btn-teal btn-big howto-science-btn" id="howto-science-btn" type="button">🔬 The Science Behind This</button>
     <div class="howto-action-bar" id="howto-action-bar">
       <button class="btn btn-sun btn-big" id="howto-start">▶ START MISSION</button>
       <button class="btn btn-listen" id="howto-listen" style="font-size:19px;padding:12px 18px;min-height:52px">🔊 Listen</button>
@@ -1317,6 +1358,39 @@ footer a{color:var(--sky);font-weight:900}
       <div class="onboard-btns">
         <button class="btn btn-sun btn-big" id="onboard-start">▶ Start Training</button>
         <button class="btn btn-ghost btn-med" id="onboard-cancel" hidden>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SWITCH CADET ================= -->
+  <div class="onboard-wrap" id="switch-wrap" hidden>
+    <div class="onboard-card switch-card" role="dialog" aria-modal="true" aria-labelledby="switch-title">
+      <div class="o-emoji" aria-hidden="true">🔄</div>
+      <h2 id="switch-title">Switch Cadet</h2>
+      <p>Every cadet's training is saved <b>separately on this device</b>. Pick a name to carry on <b>exactly where they left off</b> — their day, XP, stars, badges and certificate stay just as they were.</p>
+      <div class="cadet-list" id="switch-list"></div>
+      <div class="onboard-btns">
+        <button class="btn btn-sun btn-big" id="switch-add-btn">➕ Add New Cadet</button>
+        <button class="btn btn-ghost btn-med" id="switch-close-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SCIENCE POP-UP ================= -->
+  <div class="modal-wrap" id="science-wrap" role="dialog" aria-modal="true" aria-labelledby="science-title">
+    <div class="modal">
+      <div class="m-emoji" aria-hidden="true">🔬</div>
+      <h2 id="science-title">The Science Behind This</h2>
+      <p id="science-subtitle"></p>
+      <div class="fact"><b>🔬 The science:</b> <span id="science-text"></span></div>
+      <p class="science-steps-title">❓ How to Play — Step by Step</p>
+      <ol class="steps" id="science-steps"></ol>
+      <p class="howto-goal" id="science-goal" style="margin-bottom:0"></p>
+      <p id="science-status" aria-live="polite"></p>
+      <div class="modal-btns">
+        <button class="btn btn-listen" id="science-listen" style="font-size:19px;padding:12px 18px;min-height:52px;flex:1 1 130px">🔊 Listen</button>
+        <button class="btn btn-ghost btn-med" id="science-stop" style="flex:1 1 130px">⏹ Stop</button>
+        <button class="btn btn-teal btn-big modal-next-primary" id="science-close">✔ Close — Back to Playing</button>
       </div>
     </div>
   </div>
@@ -1422,40 +1496,131 @@ var FACTS = {
 };
 var currentGame = null, lastGame = null;
 
-/* ================= LOCAL PLAYER PROFILE (this device only) =================
-   The player's first name and training progress are saved in this browser's
-   localStorage on this device only. Nothing is sent anywhere — there is no
-   account, no server, and no tracking of any player. */
+/* ================= LOCAL CADET PROFILES (this device only) =================
+   Multiple named cadets can train on the same device/browser. Each cadet's
+   first name and training progress (day/wins, XP, stars, badges, missions
+   won, Commander completion + certificate date, level, sound) are saved
+   separately in this browser's localStorage, under that cadet's name, so
+   when a cadet comes back their training is exactly as they left it.
+   Nothing is sent anywhere — there is no account, no server, and no
+   tracking of any player.
+   Store (CADETS_KEY): { current:"<name key>", profiles:{ "<name key>": profile } }
+   The name key is the cadet's first name, lowercased. The older
+   single-cadet save (STORAGE_KEY, "jamt-player-v1") is migrated into the
+   store on first load and kept updated with the current cadet, so no
+   existing player's progress is ever lost. */
 var STORAGE_KEY = "jamt-player-v1";
-function saveProgress(){
+var CADETS_KEY = "jamt-cadets-v2";
+var cadetProfiles = {};      /* name key -> saved profile object */
+var currentCadetKey = "";    /* name key of the cadet training right now */
+function cadetKeyFor(name){ return String(name || "").replace(/\s+/g, " ").trim().toLowerCase(); }
+function cadetCount(){ return Object.keys(cadetProfiles).length; }
+function profileFromState(){
+  var winsBy = {}, badges = {};
+  ["spacewalk","exercise","habitat","weather","defender","journey"].forEach(function(g){ winsBy[g] = state.winsBy[g] || 0; });
+  BADGES.forEach(function(b){ if(state.badges[b.id]) badges[b.id] = true; });
+  return {
+    name: state.name, wins: state.wins, xp: state.xp, stars: state.stars,
+    sound: state.sound, finished: state.finished, completedDate: state.completedDate,
+    difficulty: state.difficulty, winsBy: winsBy, badges: badges
+  };
+}
+function sanitizeProfile(s){
+  if(!s || typeof s !== "object") return null;
+  var p = {
+    name: "", wins: 0, xp: 0, stars: 0, sound: true, finished: false,
+    completedDate: null, difficulty: "easy",
+    winsBy: { spacewalk:0, exercise:0, habitat:0, weather:0, defender:0, journey:0 },
+    badges: {}
+  };
+  if(typeof s.name === "string") p.name = s.name.slice(0,20);
+  if(typeof s.wins === "number") p.wins = Math.max(0, Math.min(99, s.wins|0));
+  if(typeof s.xp === "number") p.xp = Math.max(0, s.xp|0);
+  if(typeof s.stars === "number") p.stars = Math.max(0, s.stars|0);
+  if(typeof s.sound === "boolean") p.sound = s.sound;
+  if(s.difficulty === "easy" || s.difficulty === "hard") p.difficulty = s.difficulty;
+  if(typeof s.finished === "boolean") p.finished = s.finished;
+  if(typeof s.completedDate === "string") p.completedDate = s.completedDate;
+  if(s.winsBy) ["spacewalk","exercise","habitat","weather","defender","journey"].forEach(function(g){
+    if(typeof s.winsBy[g] === "number") p.winsBy[g] = Math.max(0, s.winsBy[g]|0);
+  });
+  if(s.badges) BADGES.forEach(function(b){ if(s.badges[b.id]) p.badges[b.id] = true; });
+  return p;
+}
+function applyProfile(p){
+  if(!p) return;
+  state.name = p.name; state.wins = p.wins; state.xp = p.xp; state.stars = p.stars;
+  state.sound = p.sound; state.difficulty = p.difficulty;
+  state.finished = p.finished; state.completedDate = p.completedDate;
+  state.winsBy = { spacewalk:p.winsBy.spacewalk||0, exercise:p.winsBy.exercise||0, habitat:p.winsBy.habitat||0,
+                   weather:p.winsBy.weather||0, defender:p.winsBy.defender||0, journey:p.winsBy.journey||0 };
+  state.badges = {};
+  BADGES.forEach(function(b){ if(p.badges[b.id]) state.badges[b.id] = true; });
+}
+function persistCadets(){
   try{
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      name: state.name, wins: state.wins, xp: state.xp, stars: state.stars,
-      sound: state.sound, finished: state.finished, completedDate: state.completedDate,
-      difficulty: state.difficulty,
-      winsBy: state.winsBy, badges: state.badges
-    }));
+    localStorage.setItem(CADETS_KEY, JSON.stringify({ current: currentCadetKey, profiles: cadetProfiles }));
+    /* Keep the old single-cadet key holding the current cadet too. */
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(profileFromState()));
   }catch(e){}
 }
+function saveProgress(){
+  /* Stash the current cadet's progress under their own name first, so
+     switching cadets never loses a thing. */
+  if(state.name){
+    var k = cadetKeyFor(state.name);
+    if(k){ currentCadetKey = k; cadetProfiles[k] = profileFromState(); }
+  }
+  persistCadets();
+}
 function loadProgress(){
+  /* 1) The multi-cadet store, if this browser already has one. */
+  try{
+    var raw2 = localStorage.getItem(CADETS_KEY);
+    if(raw2){
+      var store = JSON.parse(raw2);
+      if(store && store.profiles){
+        Object.keys(store.profiles).forEach(function(k){
+          var p = sanitizeProfile(store.profiles[k]);
+          if(p && p.name) cadetProfiles[cadetKeyFor(p.name)] = p;
+        });
+        if(typeof store.current === "string" && cadetProfiles[store.current]) currentCadetKey = store.current;
+        else { var ks = Object.keys(cadetProfiles); if(ks.length) currentCadetKey = ks[0]; }
+        if(currentCadetKey && cadetProfiles[currentCadetKey]){ applyProfile(cadetProfiles[currentCadetKey]); return; }
+      }
+    }
+  }catch(e){}
+  /* 2) Migrate the older single-cadet save into the store. */
   try{
     var raw = localStorage.getItem(STORAGE_KEY);
     if(!raw) return;
-    var s = JSON.parse(raw);
-    if(!s) return;
-    if(typeof s.name === "string") state.name = s.name.slice(0,20);
-    if(typeof s.wins === "number") state.wins = Math.max(0, Math.min(99, s.wins|0));
-    if(typeof s.xp === "number") state.xp = Math.max(0, s.xp|0);
-    if(typeof s.stars === "number") state.stars = Math.max(0, s.stars|0);
-    if(typeof s.sound === "boolean") state.sound = s.sound;
-    if(s.difficulty === "easy" || s.difficulty === "hard") state.difficulty = s.difficulty;
-    if(typeof s.finished === "boolean") state.finished = s.finished;
-    if(typeof s.completedDate === "string") state.completedDate = s.completedDate;
-    if(s.winsBy) ["spacewalk","exercise","habitat","weather","defender","journey"].forEach(function(g){
-      if(typeof s.winsBy[g] === "number") state.winsBy[g] = Math.max(0, s.winsBy[g]|0);
-    });
-    if(s.badges) BADGES.forEach(function(b){ if(s.badges[b.id]) state.badges[b.id] = true; });
+    var p2 = sanitizeProfile(JSON.parse(raw));
+    if(!p2) return;
+    applyProfile(p2);
+    if(p2.name){
+      var k2 = cadetKeyFor(p2.name);
+      cadetProfiles[k2] = profileFromState();
+      currentCadetKey = k2;
+      persistCadets();
+    }
   }catch(e){}
+}
+/* Switch the training cadet: the current cadet's progress is stashed
+   under their name, then the chosen cadet's saved progress is loaded
+   exactly as they left it and every home-screen readout is rebuilt. */
+function switchCadet(key){
+  if(!key || !cadetProfiles[key] || key === currentCadetKey) return;
+  saveProgress();
+  currentCadetKey = key;
+  applyProfile(cadetProfiles[key]);
+  persistCadets();
+  hideModal();
+  var wg = $("welcome-guide-card"); if(wg) wg.hidden = true; /* the guide greeting names the previous cadet */
+  renderSoundBtn();
+  renderHUD();           /* also re-saves the now-current cadet */
+  renderDifficulty();
+  applyDifficultyTexts();
+  showView("home");
 }
 function badgeCount(){ var n = 0; BADGES.forEach(function(b){ if(state.badges[b.id]) n++; }); return n; }
 function playerDisplayName(){ return state.name ? state.name : "Astronaut"; }
@@ -1775,7 +1940,9 @@ function renderHUD(){
   else $("rank-next").textContent = "Next: " + nr.name + " at " + nr.xp + " XP!";
   ["spacewalk","exercise","habitat","weather","defender","journey"].forEach(function(g){
     var chip = $("chip-"+g);
+    if(!chip) return;
     if(state.winsBy[g]>0){ chip.textContent = "✔ Done! Won " + state.winsBy[g] + "× — play again for another day"; chip.className = "chip chip-done"; }
+    else { chip.textContent = "Not done yet today"; chip.className = "chip chip-todo"; } /* reset too — a switched-to cadet must not inherit the last cadet's chips */
   });
   renderBadges();
   renderProfile();
@@ -1791,6 +1958,13 @@ function renderProfile(){
     badgeCount() + " of " + BADGES.length + "</b> badges · <b>" + state.stars + "</b> stars · Rank: <b>" + rankFor(state.xp).name + "</b>" +
     " · Level: <b>" + (state.difficulty === "hard" ? "🚀 Commander Hard" : "🌱 Easy") + "</b>" +
     (state.finished ? " · 🎖️ Training complete!" : "");
+  var note = $("profile-note");
+  if(note){
+    var n = cadetCount();
+    note.textContent = n > 1 ?
+      (n + " cadets are saved on this device — tap 🔄 Switch Cadet to change who is training. Each cadet keeps their own progress.") :
+      "Your progress is saved on this device only. Training with a friend or family? Add them with 🔄 Switch Cadet — each cadet keeps their own progress.";
+  }
 }
 /* ================= DIFFICULTY UI + TEXTS =================
    Selecting a level re-labels every goal on the home cards, in the
@@ -2207,6 +2381,162 @@ var INSTRUCTIONS = {
   }
 };
 var pendingGame = null;
+/* ================= SCIENCE POP-UP (science + step-by-step instructions) =================
+   One pop-up per mission, holding BOTH: (1) the real NASA science behind
+   the mission — only facts already used elsewhere in this game — and
+   (2) the mission's clear step-by-step How to Play steps, taken from
+   INSTRUCTIONS so they always match the current difficulty level.
+   It opens from the "🔬 The Science Behind This" button on the How to
+   Play screen (before START) and from the small "🔬 Science" button
+   inside every mission. While it is open mid-game, scienceOpen pauses
+   every mission timer and mover (see the guards in swLoop, the Exercise
+   and Habitat ticks, defLoop and jyLoop), so reading never costs the
+   player their game — Close returns to the exact same game. */
+var SCIENCE_HINTS = {
+  spacewalk: "Real spacewalks can last 6 to 8 hours! Astronauts clip on a safety tether so they never float away, every tool is tied on so it can't drift off, and crews practise first in a giant NASA pool — floating in water feels like floating in space. 🧐 Watch for: moving slowly and looking all around keeps you safe, just like a real spacewalker.",
+  exercise: "Without gravity, bones can lose about 1% of their strength every month and muscles get weak. That is why Space Station astronauts exercise about 2 hours a day on special treadmills, bikes and weight machines. 🧐 Watch for: fast, correct taps are like real workout minutes — they keep your astronaut's bones and muscles strong.",
+  habitat: "A Moon base must balance air, food, power and its radiation shield all at once. NASA's Veggie garden really grows lettuce on the Space Station — plants give food AND clean the air — and every helper on a base uses power. The Moon has almost no air and no shield like Earth's, so the radiation shield must stay strong. 🧐 Watch for: charge power early, before the other meters need it!",
+  weather: "NASA's DONKI system watches the Sun every minute. Solar flares are graded A, B, C, M, X — each letter is 10 times stronger, and X is the biggest! A giant solar cloud called a CME can take 1 to 3 days to travel from the Sun to us, and when a storm comes the safest place is inside, behind shielding. 🧐 Watch for: the flare letter in each alert tells you how strong the storm is.",
+  defender: "Real Moon dust is sharp, sticky and clings to everything — Apollo astronauts said it smelled like gunpowder! NASA studies Moon dust carefully so future bases and spacesuits stay clean and safe. In this mission you never fight — you clean with light, like a real crew keeping dust off their base. 🧐 Watch for: correct NASA answers are your cleaning power — they spread light and refill the base.",
+  journey: "A real trip to the Moon takes about 3 days each way! Apollo 8 was the first crewed spaceship to fly all the way to the Moon and back, in 1968. Crews steer carefully, eat, sleep and work inside their capsule, and fix problems step by step with brain power while Mission Control helps from Earth. 🧐 Watch for: when a warning light blinks, stop and fix the problem first — real pilots never rush."
+};
+var scienceOpen = false;
+var scienceGame = null; /* the mission whose science the pop-up is showing */
+function openScience(game){
+  if(!game || !SCIENCE_HINTS[game] || !INSTRUCTIONS[game]) return;
+  stopSpeech(); /* reading time: the instruction voice stops, the pop-up is for reading */
+  scienceOpen = true;
+  scienceGame = game;
+  var sst = $("science-status"); if(sst) sst.textContent = "";
+  $("science-subtitle").textContent = INSTRUCTIONS[game].name;
+  $("science-text").textContent = SCIENCE_HINTS[game];
+  var ol = $("science-steps"); ol.innerHTML = "";
+  INSTRUCTIONS[game].steps.forEach(function(s){
+    var li = document.createElement("li"); li.textContent = s; ol.appendChild(li);
+  });
+  $("science-goal").textContent = INSTRUCTIONS[game].goal;
+  $("science-wrap").classList.add("show");
+}
+function closeScience(){
+  stopScienceSpeech(); /* closing the pop-up stops its reading too */
+  scienceOpen = false;
+  $("science-wrap").classList.remove("show");
+}
+$("science-close").addEventListener("click", closeScience);
+$("science-wrap").addEventListener("click", function(e){ if(e.target === $("science-wrap")) closeScience(); });
+$("howto-science-btn").addEventListener("click", function(){ openScience(pendingGame); });
+document.querySelectorAll("[data-science]").forEach(function(b){
+  b.addEventListener("click", function(){ openScience(b.getAttribute("data-science")); });
+});
+/* ---- Science pop-up audio: 🔊 Listen reads the science, then every
+   step, then the goal — with the SAME slow kid-friendly browser voice
+   (en-US, rate 0.75, pitch 1.0) and the SAME word-by-word highlight +
+   auto-scroll as the instructions and the welcome guide (real boundary
+   events where available, the timed fallback elsewhere). Sound OFF
+   means no voice — the words stay on screen to read, exactly like
+   everywhere else in the game. ⏹ Stop (or closing the pop-up) ends the
+   reading and clears every highlight. ---- */
+function scienceChunks(){
+  var chunks = [{ text: SCIENCE_HINTS[scienceGame], el: $("science-text") }];
+  var lis = $("science-steps").children;
+  INSTRUCTIONS[scienceGame].steps.forEach(function(s, i){ chunks.push({ text: s, el: lis[i] || null }); });
+  chunks.push({ text: INSTRUCTIONS[scienceGame].goal, el: $("science-goal") });
+  return chunks;
+}
+function stopScienceSpeech(){
+  speechGen++; /* supersede any in-flight science reading, like every other voice stop */
+  try{ if("speechSynthesis" in window) window.speechSynthesis.cancel(); }catch(e){}
+  highlightEnabled = false;
+  stopWordTracking(); /* word highlights cleared, text restored */
+  duckMusic(false);
+}
+function speakScience(){
+  var statusEl = $("science-status");
+  function setStatus(m){ if(statusEl) statusEl.textContent = m; }
+  if(!scienceGame || !SCIENCE_HINTS[scienceGame]) return;
+  if(!state.sound){
+    setStatus("🔇 Sound is OFF — turn Sound On at the top of the screen to hear this read aloud. You can still read it here!");
+    return;
+  }
+  if(!("speechSynthesis" in window) || typeof SpeechSynthesisUtterance === "undefined"){
+    setStatus("Sorry — this browser can't read out loud. No problem: you can read it right here!");
+    return;
+  }
+  var chunks = scienceChunks();
+  try{
+    var synth = window.speechSynthesis;
+    stopVoiceAudio(); /* this reading supersedes any family recording */
+    /* Same iPhone rule as the welcome guide: cancel only when something
+       is really speaking/queued, and wait a beat before queueing if so. */
+    var wasSpeaking = false;
+    try{ wasSpeaking = !!(synth.speaking || synth.pending); }catch(e){}
+    if(wasSpeaking){ try{ synth.cancel(); }catch(e){} }
+    try{ if(synth.resume) synth.resume(); }catch(e){}
+    var myGen = ++speechGen;
+    var chosenVoice = null;
+    try{
+      var voices = synth.getVoices() || [];
+      for(var i=0;i<voices.length;i++){
+        if(voices[i].lang && voices[i].lang.toLowerCase().indexOf("en") === 0){ chosenVoice = voices[i]; break; }
+      }
+    }catch(e){}
+    highlightEnabled = true;
+    stopWordTracking();
+    duckMusic(true); /* background music dips while the science is read */
+    setStatus("🔊 Listen — reading the science and the steps out loud…");
+    function queueAll(){
+      if(myGen !== speechGen) return;
+      try{ if(synth.resume) synth.resume(); }catch(e){}
+      chunks.forEach(function(chunk, idx){
+        var u = new SpeechSynthesisUtterance(chunk.text);
+        u.lang = "en-US";
+        u.rate = 0.75; /* same slow, clear kid-friendly voice as the instructions */
+        u.pitch = 1.0;
+        u.volume = 1;
+        if(chosenVoice) u.voice = chosenVoice;
+        (function(chunkIdx, isLast){
+          var tracker = null;
+          u.onstart = function(){
+            if(myGen !== speechGen) return;
+            var c = chunks[chunkIdx];
+            tracker = c.el ? makeWordTracker(c.el, c.text, c.text) : null;
+            if(tracker) tracker.start(myGen);
+            else if(c.el){ try{ c.el.scrollIntoView({ behavior:"smooth", block:"center" }); }catch(e){} }
+          };
+          u.onboundary = function(ev){ if(myGen !== speechGen) return; if(tracker) tracker.onboundary(ev); };
+          u.onend = function(){
+            if(myGen !== speechGen) return;
+            /* Keep the last word lit between chunks; clear only at the very end. */
+            if(tracker){ tracker.finish(!isLast); tracker = null; }
+            if(isLast){
+              highlightEnabled = false;
+              stopWordTracking();
+              duckMusic(false);
+              setStatus("All done! Tap 🔊 Listen to hear it again, or Close to go back and play.");
+            }
+          };
+          u.onerror = function(){
+            if(myGen !== speechGen) return;
+            if(tracker){ tracker.finish(); tracker = null; }
+            if(isLast){ highlightEnabled = false; stopWordTracking(); duckMusic(false); }
+          };
+        })(idx, idx === chunks.length - 1);
+        synth.speak(u);
+      });
+    }
+    if(wasSpeaking) setTimeout(queueAll, 90); else queueAll();
+  }catch(e){
+    highlightEnabled = false;
+    duckMusic(false);
+    setStatus("Sorry — the reading voice didn't start. You can read it right here!");
+  }
+}
+$("science-listen").addEventListener("click", speakScience);
+$("science-stop").addEventListener("click", function(){
+  stopScienceSpeech();
+  var st = $("science-status");
+  if(st) st.textContent = "Stopped. Tap 🔊 Listen to hear it again.";
+});
 /* ---- B5: touch / small-screen detection — touch wording on phones & tablets, keyboard wording only on desktop ---- */
 var IS_TOUCH_DEVICE = false;
 try{ IS_TOUCH_DEVICE = (("ontouchstart" in window) || (navigator.maxTouchPoints > 0) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches) || window.innerWidth <= 820); }catch(e){}
@@ -3178,10 +3508,24 @@ function startWelcomeHomeGuide(){
   });
 }
 
-/* ================= NAME ENTRY (first open + change name) ================= */
+/* ================= NAME ENTRY (first open + change name + add new cadet) =================
+   One dialog, three modes:
+   · "first"  — the very first cadet on this device (voice guide lives here)
+   · "rename" — Change Name for the cadet training now (re-keys their save)
+   · "new"    — Add New Cadet: a brand-new name starts fresh; a name that
+                is already saved loads that cadet instead — adding a cadet
+                NEVER wipes anyone's saved progress. */
 var onboardEditing = false;
+var onboardMode = "first";
+function onboardError(msg){
+  var e = $("onboard-error");
+  e.textContent = msg;
+  e.hidden = false;
+  $("cadet-name-input").focus();
+}
 function openOnboard(editing){
   onboardEditing = !!editing;
+  onboardMode = editing ? "rename" : "first";
   $("onboard-title").textContent = editing ? "Change your cadet name" : "Who is training today?";
   $("onboard-start").textContent = editing ? "✔ Save Name" : "▶ Start Training";
   $("onboard-cancel").hidden = !editing;
@@ -3205,11 +3549,62 @@ function openOnboard(editing){
   $("onboard-wrap").hidden = false;
   setTimeout(function(){ $("cadet-name-input").focus(); }, 60);
 }
+function openAddCadet(){
+  onboardEditing = true; /* an existing cadet is training — no voice guide, Cancel shows */
+  onboardMode = "new";
+  voiceGuideActive = false;
+  $("onboard-title").textContent = "Add a New Cadet";
+  $("onboard-start").textContent = "▶ Start Training";
+  $("onboard-cancel").hidden = false;
+  $("onboard-error").hidden = true;
+  $("cadet-name-input").value = "";
+  var vp = $("onboard-voice-panel");
+  if(vp) vp.hidden = true;
+  $("onboard-wrap").hidden = false;
+  setTimeout(function(){ $("cadet-name-input").focus(); }, 60);
+}
 function closeOnboard(){ $("onboard-wrap").hidden = true; }
 function submitOnboard(){
   var name = $("cadet-name-input").value.replace(/\s+/g, " ").trim().slice(0, 20);
-  if(!name){ $("onboard-error").hidden = false; $("cadet-name-input").focus(); return; }
-  state.name = name.split(" ")[0]; /* first name only */
+  if(!name){ onboardError("Type your first name to start training!"); return; }
+  var firstName = name.split(" ")[0]; /* first name only */
+  var key = cadetKeyFor(firstName);
+  if(onboardMode === "rename"){
+    var oldKey = cadetKeyFor(state.name);
+    if(key !== oldKey && cadetProfiles[key]){
+      onboardError("Another cadet already trains with that name — pick a different name, or tap Switch Cadet to play as them.");
+      return;
+    }
+    if(key !== oldKey) delete cadetProfiles[oldKey]; /* the save moves to the new name */
+    state.name = firstName;
+    saveProgress(); renderProfile(); renderMotivation();
+    closeOnboard();
+    return;
+  }
+  if(onboardMode === "new"){
+    if(cadetProfiles[key]){
+      /* That name is already saved: load that cadet exactly as they left
+         it — never start them over by accident. */
+      closeOnboard();
+      if(key !== currentCadetKey) switchCadet(key);
+      return;
+    }
+    /* A brand-new cadet starts completely fresh. Sound stays as this
+       device has it; everything else is day one. */
+    var keepSound = state.sound;
+    state.name = firstName; state.wins = 0; state.xp = 0; state.stars = 0;
+    state.sound = keepSound; state.finished = false; state.completedDate = null;
+    state.difficulty = "easy";
+    state.winsBy = { spacewalk:0, exercise:0, habitat:0, weather:0, defender:0, journey:0 };
+    state.badges = {};
+    saveProgress();
+    closeOnboard();
+    renderHUD(); renderDifficulty(); applyDifficultyTexts();
+    showView("home");
+    return;
+  }
+  /* "first" mode — the device's very first cadet, as before. */
+  state.name = firstName;
   saveProgress(); renderProfile(); renderMotivation();
   closeOnboard();
   /* Silent on purpose UNLESS the player chose the voice guide on the
@@ -3235,6 +3630,56 @@ $("cadet-name-input").addEventListener("keydown", function(e){ if(e.key === "Ent
 $("cadet-name-input").addEventListener("input", function(){ $("onboard-error").hidden = true; });
 $("onboard-cancel").addEventListener("click", function(){ closeOnboard(); });
 $("profile-edit-btn").addEventListener("click", function(){ openOnboard(true); });
+
+/* ================= SWITCH CADET (home screen) =================
+   Lists every cadet saved on this device with their own progress —
+   day, XP, stars, badges, rank, and Commander completion. Tapping a
+   cadet loads their training exactly as they left it (see switchCadet);
+   the cadet training now is marked and cannot be re-picked. */
+function renderSwitchList(){
+  var list = $("switch-list");
+  if(!list) return;
+  list.innerHTML = "";
+  var keys = Object.keys(cadetProfiles);
+  keys.sort(function(a, b){
+    if(a === currentCadetKey) return -1;
+    if(b === currentCadetKey) return 1;
+    return cadetProfiles[a].name.localeCompare(cadetProfiles[b].name);
+  });
+  if(!keys.length){
+    var empty = document.createElement("p");
+    empty.className = "switch-empty";
+    empty.textContent = "No cadets saved yet — add the first cadet below!";
+    list.appendChild(empty);
+    return;
+  }
+  keys.forEach(function(k){
+    var p = cadetProfiles[k];
+    var isCurrent = (k === currentCadetKey);
+    var bc = 0;
+    BADGES.forEach(function(b){ if(p.badges && p.badges[b.id]) bc++; });
+    var day = p.finished ? 7 : Math.min((p.wins || 0) + 1, 7);
+    var rank = p.finished ? "Commander" : (p.xp >= 90 ? "Officer" : "Cadet");
+    var stats = "Day " + day + " of 7 · " + p.xp + " XP · " + p.stars + " ⭐ · " +
+      bc + " of " + BADGES.length + " badges · Rank: " + rank +
+      (p.finished ? " · 🎖️ Training complete!" : "");
+    var row = document.createElement(isCurrent ? "div" : "button");
+    if(!isCurrent){ row.type = "button"; row.setAttribute("aria-label", "Play as Cadet " + p.name); }
+    row.className = "cadet-row" + (isCurrent ? " current" : "");
+    row.innerHTML = '<span class="c-avatar" aria-hidden="true">🧑‍🚀</span>' +
+      '<span class="c-main"><span class="c-name"></span><span class="c-stats"></span></span>' +
+      '<span class="c-go">' + (isCurrent ? "✔ Training now" : "▶ Play") + '</span>';
+    row.querySelector(".c-name").textContent = "Cadet " + p.name;
+    row.querySelector(".c-stats").textContent = stats;
+    if(!isCurrent) row.addEventListener("click", function(){ closeSwitch(); switchCadet(k); });
+    list.appendChild(row);
+  });
+}
+function openSwitch(){ renderSwitchList(); $("switch-wrap").hidden = false; }
+function closeSwitch(){ $("switch-wrap").hidden = true; }
+$("profile-switch-btn").addEventListener("click", openSwitch);
+$("switch-close-btn").addEventListener("click", closeSwitch);
+$("switch-add-btn").addEventListener("click", function(){ closeSwitch(); openAddCadet(); });
 
 $("again-btn").addEventListener("click", function(){ resetAll(); });
 
@@ -3472,6 +3917,7 @@ function swLoop(ts){
   if(!sw.running) return;
   var b = swBoard(), W = b.clientWidth, H = b.clientHeight;
   var dt = sw.last ? Math.min(50, ts - sw.last) : 16; sw.last = ts;
+  if(scienceOpen){ sw.raf = requestAnimationFrame(swLoop); return; } /* science pop-up open: the spacewalk freezes — reading never costs the game */
   sw.left -= dt/1000;
   var tickSec = Math.ceil(sw.left);
   if(tickSec !== sw.tickSec){ sw.tickSec = tickSec; if(tickSec <= 5 && tickSec > 0) sfxTick(); } /* final-seconds countdown ticks */
@@ -3553,6 +3999,7 @@ function exStart(){
   $("ex-astro").textContent = "🧑‍🚀💪";
   exDraw(); exPick();
   ex.tickInt = setInterval(function(){
+    if(scienceOpen) return; /* science pop-up open: the workout clock freezes */
     ex.left--; exDraw();
     if(ex.left <= 5 && ex.left > 0) sfxTick(); /* countdown ticks */
     if(ex.left<=0){
@@ -3585,8 +4032,9 @@ function exPick(){
   ex.target = next;
   document.querySelectorAll(".ex-pad").forEach(function(p){ p.classList.toggle("lit", p.getAttribute("data-ex")===ex.target); });
   $("ex-call").textContent = EX_NAMES[ex.target];
-  ex.roundTO = setTimeout(function(){
+  ex.roundTO = setTimeout(function exRoundTO(){
     if(!ex.running) return;
+    if(scienceOpen){ ex.roundTO = setTimeout(exRoundTO, 400); return; } /* science pop-up open: wait — no "too slow" while reading */
     $("ex-feedback").textContent = "Too slow! The move changed. Watch for the yellow glow!";
     buzz(); exPick();
   }, DP("exercise").glow); /* Easy: more time to tap · Commander Hard: the glow moves on fast */
@@ -3624,6 +4072,7 @@ function habStart(){
   $("hab-feedback").textContent = "Your Moon day has started. Keep everything alive!";
   habDraw();
   hab.tickInt = setInterval(function(){
+    if(scienceOpen) return; /* science pop-up open: the Moon day freezes — meters hold while reading */
     hab.elapsed += 0.7;
     var hp = DP("habitat");
     var habSec = Math.floor(hab.elapsed);
@@ -3954,7 +4403,7 @@ function defLoop(ts){
   if(!def.running) return;
   var b = defBoard(), W = b.clientWidth;
   var dt = def.last ? Math.min(50, ts - def.last) : 16; def.last = ts;
-  if(!def.quizOpen){
+  if(!def.quizOpen && !scienceOpen){ /* the science pop-up pauses Defender, just like the quiz does */
     def.left -= dt/1000;
     var tickSec = Math.ceil(def.left);
     if(tickSec !== def.tickSec){ def.tickSec = tickSec; if(tickSec <= 5 && tickSec > 0) sfxTick(); }
@@ -4405,7 +4854,7 @@ function jyLoop(ts){
   if(!jy.running) return;
   var b = jyBoard(), W = b.clientWidth, H = b.clientHeight;
   var dt = jy.last ? Math.min(50, ts - jy.last) : 16; jy.last = ts;
-  if((jy.phase === "fly" || jy.phase === "return") && !jy.frozen && W > 0){
+  if((jy.phase === "fly" || jy.phase === "return") && !jy.frozen && !scienceOpen && W > 0){ /* science pop-up open: the ship holds still while reading */
     var sp = DP("journey").speed * dt, dx = 0, dy = 0;
     if(jy.keys.ArrowLeft || jy.keys.KeyA || jy.keys.left) dx -= 1;
     if(jy.keys.ArrowRight || jy.keys.KeyD || jy.keys.right) dx += 1;

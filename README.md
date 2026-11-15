@@ -68,15 +68,27 @@ Curated data is labelled **"Curated facts — not live"** in the game; live data
 
 ## Team
 
-- **Mani (Thanesh)** — dad, builder, Welcome voice
-- **Son (age 10)** — Spacewalk + Journey voices, game-design ideas (falling Spacewalk, Exercise motion, motion quiz, Journey asteroids)
-- **Daughter Mounaashree (age 8)** — Exercise + Defender voices
-- **Gracy** — Moon Base Keeper + Weather Watch voices
+- **Manikandan (dad, "Mani")** — builder, Welcome voice
+- **Gracy (mom)** — Moon Base Keeper + Weather Watch voices
+- **Thanesh (son, age 10)** — Spacewalk + Journey voices, game designer and lead playtester
+- **Mounaashree (daughter, age 8)** — Exercise + Defender voices
+- We are a family team: dad and mom are helping our kids Thanesh (10) and Mounaashree (8) complete this project.
 - Built with help from **Muse (Remo)**, our AI assistant — AI tools used are disclosed here, as the challenge requires. No NASA branding or logos are used.
+
+## How we built it — the kids tested it, then made it better
+
+The kids didn't just play the game — they tested it and then told us what to change, and we built their ideas in:
+
+1. **Thanesh (10) played Spacewalk and said it was too easy and simple.** After testing, he suggested: instead of walking around collecting tools, make tools and asteroids fall from the top — dodge the rocks, catch the tools, collect enough to move to the next level. We rebuilt Spacewalk that way.
+2. **Thanesh played Exercise and said the screen needed motion.** After testing, he suggested: show the astronaut actually doing the exercise — running when the pad says running. We added matching motion animations for every exercise.
+3. **Thanesh played Space Weather Watch and said reading a passage first was boring.** After testing, he suggested: show a NASA motion instead (like a rocket taking off) and ask "What is this called?" We rebuilt it as a 7-question motion quiz.
+4. **Thanesh played the Journey and said it needed more excitement.** After testing, he suggested: asteroids coming down to dodge, a hit just puts you back (respawn, not game over), a proud "Well done!" voice when you reach the Moon, a 5-4-3-2-1 take-off countdown for the flight home, about 15 seconds from Earth to the problem and 20 seconds from there to the Moon, and lots of description, stars, and planets everywhere. We built all of it.
+5. **Thanesh also said Moon Base Keeper and Moon Base Defender were already good** — leave those two alone. We did.
+6. **Mounaashree (8) playtested every mission** on Easy level and recorded the Exercise and Defender voices.
 
 ## Playtesting
 
-Played and tested by our own children (ages 8 and 10) and shared with friends and family to playtest during the hackathon, as the challenge recommends.
+Played and tested by our own children — Thanesh (10) and Mounaashree (8) — throughout the hackathon, and shared with friends and family to playtest, as the challenge recommends. Their testing directly shaped the game: the falling Spacewalk, the Exercise motion, the Weather Watch motion quiz, and the Journey asteroids all came from Thanesh's suggestions after he played each mission.
 
 ## Submission
 

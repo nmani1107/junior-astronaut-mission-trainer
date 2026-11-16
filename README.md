@@ -55,7 +55,7 @@ Inside the game, the Dashboard has a tab **"🏆 How We Meet the Challenge"** li
 
 ## Voices, music, and accessibility
 
-- **Family voices:** Welcome — Mani (dad); Spacewalk + Earth to Moon Journey — Thanesh (son, 10); Exercise + Moon Base Defender — Mounaashree (daughter, 8); Moon Base Keeper + Space Weather Watch — Gracy (mom). Recorded by the family, with browser-voice fallback and **word-by-word highlighting** (the exact spoken word lights up and scrolls into view) on every screen.
+- **Voices:** the Welcome is Dad Mani's own recording; every mission intro is read aloud by the browser voice from its exact script, with **word-by-word highlighting** (the exact spoken word lights up and scrolls into view) on every screen.
 - **Music:** a soft original music-box tune in C major, synthesized live, plays quietly only inside missions, ducks to a whisper whenever a voice speaks, and stops on the home screen or with Sound Off.
 - **Science pop-ups:** every mission has a "Science Behind This" pop-up (science only, audio plays by default, 🔊 Listen replays, ⏹ Stop stops it). It opens automatically the first time you play a mission each day, so every kid learns the science before playing.
 - **Question & answer audio:** every quiz reads itself aloud — the question and its choices play when the question appears, and the real NASA fact is read after answering — with a 🔊 Hear the Question / ⏹ Stop button on each question screen (Weather Watch, Defender, Journey gate, and Journey fix-it/clean-up questions). Word-by-word highlighting follows the reading.
@@ -70,7 +70,7 @@ Inside the game, the Dashboard has a tab **"🏆 How We Meet the Challenge"** li
 3. Thanesh played Weather Watch, said reading a passage first was boring, and suggested showing a NASA motion and asking "What is this called?" — rebuilt as a 7-question motion quiz.
 4. Thanesh played Journey, wanted more excitement — asteroids to dodge, hit = respawn not game over, a proud "Well done!" at the Moon, a 5-4-3-2-1 countdown at the Moon, about 15 seconds Earth → problem and 16 seconds problem → Moon, then a ~1-second teleport home, lots of description, stars, and planets — all built.
 5. Thanesh said Moon Base Keeper and Defender were already good — leave them alone, and we did.
-6. Mounaashree playtested every mission on Easy and recorded the Exercise and Defender voices.
+6. Mounaashree playtested every mission on Easy.
 7. Mani suggested the science must be learned, not skipped — so the Science Behind This pop-up now opens by itself the first time a mission is played each day.
 8. Remo (our AI assistant) suggested four more improvements, all built: shared oxygen/power/food across all 7 days, a "Today I learned that…" line after every mission, a daily space-weather event, and a Parents & Teachers page — plus Play Now as Guest, a certificate with name and date, the one-line home pitch, and a fully working offline path.
 9. Mani reported the family voices were not playing on his iPhone — the browser voice came instead. The cause was the playback path: slow or interrupted loads were given up on too fast. Fixed so a recording retries until it plays, and the browser voice is used only on a real media error. Mani also asked for audio on every question and answer, and for the game never to move screens by itself when audio ends — both built: every quiz now reads aloud, and audio ending never navigates.
@@ -78,7 +78,7 @@ Inside the game, the Dashboard has a tab **"🏆 How We Meet the Challenge"** li
 
 ## Team
 
-We are a family team: **Manikandan (dad, "Mani")** — builder, Welcome voice; **Gracy (mom)** — Moon Base Keeper + Weather Watch voices; **Thanesh (son, age 10)** — Spacewalk + Journey voices, game designer and lead playtester; **Mounaashree (daughter, age 8)** — Exercise + Defender voices. Dad and mom are helping our kids Thanesh (10) and Mounaashree (8) complete this project.
+We are a family team: **Manikandan (dad, "Mani")** — builder, Welcome voice; **Gracy (mom)** — helped build the game; **Thanesh (son, age 10)** — game designer and lead playtester; **Mounaashree (daughter, age 8)** — game designer and playtester. Dad and mom are helping our kids Thanesh (10) and Mounaashree (8) complete this project.
 
 Built with help from **Muse (Remo)**, our AI assistant — AI tools used are disclosed here, as the challenge requires. No NASA branding or logos are used.
 
@@ -88,17 +88,17 @@ End-to-end tested in real browsers across phone (360px, 390px), tablet (768px), 
 
 ## Tech — technology used, devices, and browsers
 
-One self-contained `index.html` (~2.4 MB) — all missions, voices, music, CSS, and JavaScript inlined. No framework, no build step, no backend, no server, no database. Progress is saved in browser localStorage on that device only — nothing is sent anywhere.
+One self-contained `index.html` (~1.4 MB) — all missions, voices, music, CSS, and JavaScript inlined. No framework, no build step, no backend, no server, no database. Progress is saved in browser localStorage on that device only — nothing is sent anywhere.
 
-- **Technology:** plain HTML, CSS, and JavaScript in a single file. Sounds and music are synthesized live with the Web Audio API (original music-box tune in C major, plus button taps, chimes, and rocket sounds). Spoken instructions and quiz readings use the browser's built-in speech (speechSynthesis), and the family's own recorded voices (MP3) play the welcome and mission introductions. Live NASA data is fetched straight from api.nasa.gov and NASA's DONKI API by the game code itself — no middle server.
+- **Technology:** plain HTML, CSS, and JavaScript in a single file. Sounds and music are synthesized live with the Web Audio API (original music-box tune in C major, plus button taps, chimes, and rocket sounds). Spoken instructions and quiz readings use the browser's built-in speech (speechSynthesis); the Welcome is Dad's recorded voice (MP3), and every mission intro is read by the browser voice from its exact script. Live NASA data is fetched straight from api.nasa.gov and NASA's DONKI API by the game code itself — no middle server.
 - **Devices:** phones, tablets, laptops, and desktops — touch, mouse, keyboard arrows, and on-screen D-pad all work. Big tap targets (48–56px), no horizontal scrolling, reduced-motion respected.
 - **Browsers:** Chrome, Firefox, and Safari (WebKit), plus Edge — browsers from 2016 onwards. Full support on 2020 and newer (Chrome 80+, Edge 80+, Safari 13+, Firefox 75+); 2016–2019 browsers play the full game with a graceful text-only fallback if voice or audio is missing. Tested end-to-end in Chromium, Firefox, and WebKit.
 - **Offline:** the game plays fully with no internet, using curated real NASA facts (labelled "Curated facts — not live"), so a classroom or a plane is fine.
-- **Full specs:** 6 missions, 7-day Cadet-to-Commander journey, 9 badges, 21 stars, 2 difficulty levels (Easy ages 7–8, Commander Hard age 10+), 7 family-recorded voices, daily space-weather event, shared oxygen/power/food across days, multiple cadet profiles on one device, guest play with no name needed.
+- **Full specs:** 6 missions, 7-day Cadet-to-Commander journey, 9 badges, 21 stars, 2 difficulty levels (Easy ages 7–8, Commander Hard age 10+), 1 recorded voice (Dad's welcome) plus browser speech for all 6 mission intros, daily space-weather event, shared oxygen/power/food across days, multiple cadet profiles on one device, guest play with no name needed.
 
 ## Submission
 
-- **Final Project (playable link):** https://nmani1107.github.io/junior-astronaut-mission-trainer/?v=11
+- **Final Project (playable link):** https://nmani1107.github.io/junior-astronaut-mission-trainer/?v=12
 - **Repository:** https://github.com/nmani1107/junior-astronaut-mission-trainer
 - **Project Demo:** 30-second video (kids playing) or 7-slide deck, on the team Project page.
 - Submitted by the team themselves, before **Sunday, November 15, 2026, 11:59 PM local time**.
